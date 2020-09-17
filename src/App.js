@@ -1,24 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React,{useEffect, useState} from 'react';
 
-function App() {
+const  App=()=> {
+  const [coronadata, setcoronadata] = useState({})
+
+  useEffect(()=>{
+    fetch('https://api.covid19india.org/data.json')
+    .then(res=>res.json())
+    .then(data=>{console.log(data.statewise[6]);setcoronadata(data.statewise[6])})
+  },[])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1 className="title">Do U wanna see How bad the corona virus situtation in U.P </h1>
+        <div className="data">
+          <h2>active cases - {coronadata.active}</h2>
+          <h2>confirmed cases - {coronadata.confirmed}</h2>
+          <h2>deaths - {coronadata.deaths}</h2>
+          <h2>recovered - {coronadata.recovered }</h2>
+        </div>
     </div>
   );
 }

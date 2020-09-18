@@ -17,7 +17,8 @@ body{
   margin:1rem 0rem;
 }
 input{
-  width:60%;
+  width:30%;
+  margin-left: 1rem;
   height: 2rem;
 }
 .title{

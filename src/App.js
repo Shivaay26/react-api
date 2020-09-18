@@ -5,7 +5,7 @@ const  App=()=> {
   const [datafetched, setdatafetched] = useState([])
   const [state, setstate] = useState("Total");
   const [statedata, setstatedata] = useState({})
-  let inputstate="Total";
+  let inputstate="";
 
   useEffect(()=>{
     fetch('https://api.covid19india.org/data.json')
@@ -24,11 +24,22 @@ const  App=()=> {
   
   return (
     <div className="App">
-      <h1 className="title">Do U wanna see How bad the corona virus situtation in your state is</h1>
-        <div className="data">
+         <div className="data">
+          
+          {/*         */}
+          {datafetched[0] && <div>
+            <h2>active coronavirus cases in india:-</h2>
+            <h2 className="grey">{datafetched[0].active}</h2>
+          <h2>confirmed cases - {datafetched[0].confirmed}</h2>
+          <h2>Deaths - {datafetched[0].deaths}</h2>
+          <h2>recovered  - {datafetched[0].recovered}</h2>
+
+            </div>}
+
+        </div>
+
           <form onSubmit={submitHandler}>
-           Enter your state :- 
-            <input type="text" onChange={changeHandler}/>
+           Enter your state  for state specific data:- <input type="text" onChange={changeHandler}/>
           </form>
           
           {statedata[0] && 
@@ -42,7 +53,7 @@ const  App=()=> {
           {console.log(statedata[0])}
           </>}        
  
-        </div>
+        
     </div>
   );
 }
